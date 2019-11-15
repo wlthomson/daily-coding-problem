@@ -40,7 +40,7 @@ Node* XORLinkedList::XOR(Node *x, Node *y)
 void XORLinkedList::insert(int data) {
     // New node link is XOR of null and current head.
     struct Node *node = new Node(data);
-	node->both = XOR(nullptr, this->head);
+    node->both = XOR(nullptr, this->head);
 
     if (this->head) {
         // Previous head node link is XOR of new node and next node.
