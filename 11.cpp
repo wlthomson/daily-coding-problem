@@ -4,8 +4,8 @@ using namespace std;
 
 int const MAX_TREE_WIDTH = 26;
 
-int getCharIndex(char c) { return c - 'a'; }
-char getIndexChar(int i) { return 'a' + i; };
+int char_to_index(char c) { return c - 'a'; }
+char index_to_char(int i) { return 'a' + i; };
 
 struct TrieNode {
     struct TrieNode *nodes[MAX_TREE_WIDTH];
@@ -29,7 +29,7 @@ TrieNode::TrieNode() {
 void TrieNode::insert(string str) {
     struct TrieNode *curr = this;
     for (int i=0; i<str.length(); i++) {
-        int index = getCharIndex(str[i]);
+        int index = char_to_index(str[i]);
         if (!curr->nodes[index]) {
             curr->nodes[index] = new TrieNode();
         }
@@ -41,7 +41,7 @@ void TrieNode::insert(string str) {
 struct TrieNode* TrieNode::search(string str) {
     struct TrieNode *curr = this;
     for (int i=0; i<str.length(); i++) {
-        int index = getCharIndex(str[i]);
+        int index = char_to_index(str[i]);
         if (!curr->nodes[index]) { return nullptr; }
         curr = curr->nodes[index];
     }
@@ -52,7 +52,7 @@ void TrieNode::iterate(string str) {
     if (this->isTerminal) { cout << str << endl; }
     for (int i=0; i<MAX_TREE_WIDTH; i++) {
         if (this->nodes[i] != nullptr) {
-            this->nodes[i]->iterate(str + getIndexChar(i));
+            this->nodes[i]->iterate(str + index_to_char(i));
         }
     }
 }
