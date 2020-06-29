@@ -1,5 +1,10 @@
 # bin
 *.out
+*.exe
+
+# build
+*.obj
 
 # vscode
+.vs
 .vscode
